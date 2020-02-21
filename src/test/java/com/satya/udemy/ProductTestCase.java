@@ -3,6 +3,8 @@ package com.satya.udemy;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Test;
@@ -16,7 +18,7 @@ import com.satya.udemy.product.repositories.ProductRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class HibernateTrainingApplicationTests {
+public class ProductTestCase {
 
 	@Autowired
 	ProductRepository repository;
@@ -31,16 +33,12 @@ public class HibernateTrainingApplicationTests {
 	@Test
 	public void testCreateProduct() {
 
-		Product currentProduct = new Product();
+		List<Product> allProducts = this.createTestProducts(15);
 
-		currentProduct.setId(3);
-		currentProduct.setDesc("Mobile");
-		currentProduct.setName("iPhone");
-		currentProduct.setPrice(10000);
-
-		Product savedProduct = repository.save(currentProduct);
-
-		assertEquals(savedProduct.getId(), currentProduct.getId());
+		for(Product currentProduct : allProducts) {
+			
+			this.repository.save(currentProduct);
+		}
 	}
 
 	/**
@@ -92,6 +90,30 @@ public class HibernateTrainingApplicationTests {
 
 			repository.delete(currentProduct);
 		}
+	}
+	
+	/**
+	 * Creates List of Products
+	 * @param numberOfProducts
+	 * @return
+	 */
+	private List<Product> createTestProducts(int numberOfProducts) {
+		
+		List<Product> allProducts = new ArrayList<Product>();
+		
+		for (int currentProduct = 1; currentProduct <= numberOfProducts; currentProduct++) {
+			
+			Product product = new Product();
+			
+			product.setId(currentProduct + 1);
+			product.setDesc("Product Desc" + currentProduct);
+			product.setName("Product " + currentProduct);
+			product.setPrice(currentProduct * 250.50);
+			
+			allProducts.add(product);
+		}
+		
+		return allProducts;
 	}
 
 }

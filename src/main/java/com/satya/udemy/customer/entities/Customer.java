@@ -1,4 +1,8 @@
+/**
+ * 
+ */
 package com.satya.udemy.customer.entities;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +16,6 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table
 public class Customer {
 
 	@Id
@@ -22,6 +25,8 @@ public class Customer {
 	private String name;
 	
 	private String email;
+	
+	public Customer() { }
 
 	public int getId() {
 		return id;

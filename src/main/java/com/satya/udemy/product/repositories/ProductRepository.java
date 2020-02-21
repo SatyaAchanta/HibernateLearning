@@ -3,6 +3,8 @@
  */
 package com.satya.udemy.product.repositories;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 import com.satya.udemy.product.entities.Product;
@@ -12,5 +14,5 @@ import com.satya.udemy.product.entities.Product;
  *
  */
 public interface ProductRepository extends CrudRepository<Product, Integer> {
-
+	
 }
